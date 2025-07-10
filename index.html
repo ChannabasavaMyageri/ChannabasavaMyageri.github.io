@@ -1,39 +1,573 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Portfolio of CM Channabasava Myageri, a passionate software engineer specializing in web development.">
+  <meta name="keywords" content="software engineer, web developer, portfolio, Channabasava Myageri, programmer">
+  <meta property="og:title" content="Channabasava Myageri">
+  <meta property="og:description"
+    content="Explore the portfolio of Channabasava Myageri, showcasing projects, skills, and contact information.">
+  <meta property="og:type" content="website">
   <title>Channabasava Myageri</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>CM</text></svg>"
+    type="image/svg+xml">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link href="https://fonts.google.com/specimen/Nothing+You+Could+Do" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      margin: 0;
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      overflow-x: hidden;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .logo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: clamp(1rem, 2vw, 1.5rem);
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      text-decoration: none;
+      color: white;
+    }
+
+    .initials {
+      font-weight: 900;
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    }
+
+    .name {
+      line-height: 1.2;
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      margin-left: 0.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: bold;
+      line-height: 1.2;
+      text-align: left;
+      margin-right: clamp(1rem, 3vw, 2rem);
+      animation: fadeInScale 1s ease-in;
+    }
+
+    .tagline {
+      font-family: 'Nothing You Could Do', cursive, 'Arial', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      text-align: left;
+      margin-top: 0.5rem;
+      animation: fadeInScale 1s ease-in;
+    }
+
+    .circle {
+      width: clamp(150px, 20vw, 220px);
+      height: clamp(150px, 20vw, 220px);
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      margin-left: clamp(-1.5rem, -2vw, -1rem);
+      animation: fadeInScale 1s ease-in;
+      transition: transform 0.3s;
+    }
+
+
+    .circle:hover {
+      transform: scale(1.05);
+    }
+
+    /* Right-side rotated text with icons */
+    .side-text a {
+      position: fixed;
+      right: clamp(5px, 1vw, 10px);
+      transform: rotate(90deg);
+      transform-origin: right top;
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      font-weight: 500;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .side-text a i {
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+    }
+
+    .side-text a:hover {
+      color: #B6B09F;
+      text-decoration: underline;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .about a {
+      top: clamp(15%, 20vh, 25%);
+    }
+
+    .projects a {
+      top: 50%;
+    }
+
+    .contact a {
+      top: clamp(75%, 80vh, 85%);
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin: 0 clamp(8px, 1.5vw, 12px);
+      transition: color 0.3s, transform 0.3s;
+      animation: fadeInScale 1s ease-in;
+    }
+
+    .social-icons a:hover {
+      color: #B6B09F;
+      transform: scale(1.2);
+    }
+
+    /* Center content container */
+    .center-content {
+      width: clamp(300px, 80%, 900px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 2rem);
+    }
+
+    /* Bottom icons positioning */
+    .bottom-icons {
+      bottom: clamp(1rem, 2vh, 1.5rem);
+      z-index: 10;
+    }
+
+    /* Section styling */
+    .section {
+      padding: clamp(2rem, 5vh, 4rem) 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border: none;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    /* Form feedback */
+    .form-message {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    .form-message.success {
+      background-color: #28a745;
+    }
+
+    .form-message.error {
+      background-color: #dc3545;
+    }
+
+    /* Animations */
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-name {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        text-align: center;
+        margin-right: 0;
+      }
+
+      .tagline {
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .circle {
+        width: clamp(120px, 25vw, 160px);
+        height: clamp(120px, 25vw, 160px);
+        margin-left: 0;
+      }
+
+      .center-content {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .side-text {
+        display: none;
+      }
+
+      .logo {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar-nav {
+        background-color: #1a1a1a;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .initials {
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+      }
+
+      .name {
+        font-size: clamp(0.7rem, 1.6vw, 0.9rem);
+      }
+
+      .social-icons a {
+        margin: 0 clamp(5px, 1vw, 8px);
+      }
+    }
+  </style>
 </head>
 
 <body>
-<header id="header">
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Fixed Logo -->
+  <a href="#home" class="logo" aria-label="Go to Home">
+    <div class="initials">CM</div>
+  </a>
+
+  <!-- Navbar for Mobile -->
+  <nav class="navbar navbar-expand-lg navbar-dark d-lg-none fixed-top" style="background-color: #1a1a1a;">
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand" href="/">Channabasava Myageri</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">About</a>
-              <a class="nav-link" href="#">Project</a>
-              <a class="nav-link disabled">Contact</a>
+      <a class="navbar-brand initials" href="#home" aria-label="Go to Home">CM</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#about" aria-label="Go to About section"><i
+                class="bi bi-info-circle me-1"></i>About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects" aria-label="Go to Projects section"><i
+                class="bi bi-briefcase me-1"></i>Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" aria-label="Go to Contact section"><i
+                class="bi bi-envelope me-1"></i>Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="section">
+    <div class="container">
+      <!-- Right Side Vertical Labels with Icons -->
+      <div class="side-text about"><a href="#about" aria-label="Go to About section"><i class="bi bi-info-circle"></i>
+          ABOUT</a></div>
+      <div class="side-text projects"><a href="#projects" aria-label="Go to Projects section"><i
+            class="bi bi-briefcase"></i> PROJECTS</a></div>
+      <div class="side-text contact"><a href="#contact" aria-label="Go to Contact section"><i
+            class="bi bi-envelope"></i> CONTACT</a></div>
+
+      <!-- Center Area -->
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="center-content">
+          <!-- Name and Tagline -->
+          <div>
+            <div class="hero-name text-white">Channabasava </div>
+            <div class="hero-name text-white">Myageri</div>
+            <div class="tagline text-white">
+              <q>Hello World!,Meet your next developer</q>
+
+            </div>
+          </div>
+          <!-- Avatar -->
+          <img src="yavvo.png" class="circle"></img>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <p>"Hi, I'm Channabasava Myageri, a computer science engineering 
+            student with a passion for Web Designing and UI/UX. Proficient in 
+            canva and figma , I'm excited to apply my skills to
+             real-world projects. As a fresher, I'm eager to learn, grow, and contribute to innovative teams. 
+             When I'm not coding, I enjoy taking pictures and traveling."
+
+
+          </p>
+          <p><strong>Skills:</strong> HTML, CSS, JavaScript, Python, UI/UX.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="row">
+        <div class="col-md-6 mb-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Pet-Folio</h5>
+              <p class="card-text">A web app built with HTML,CSS,JavaScript Giving every animal a place to call
+                homeby connecting hearts through adoption.<br>
+                Features include :<br>
+              <ul>
+                <li>E-shelter for street animals.</li>
+                <li>Adoption platform for caretaker.</li>
+                <li>When you can’t care for your pet, we help find someone who can.</li>
+              </ul>
+              </p>
+              <a href="#" class="btn btn-primary">View Project</a>
             </div>
           </div>
         </div>
-      </nav>
+        <div class="col-md-6 mb-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Donor connect</h5>
+              <p class="card-text">A web app project using HTML,CSS,JavaScript,My SQL Making it easy to find or
+                become a lifesaving blood donor.<br> Features include :<br>
+              <ul>
+                <li>Knowing about future blood camps</li>
+                <li>Connecting the
+                  reciver to the nearest donor.</li>
+                <li>Listing out the nearest blood banks.</li>
+              </ul>
+              </p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Project Three</h5>
+              <p class="card-text">An open-source tool for [purpose], built with [technologies].</p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>-->
+      </div>
     </div>
-  </header>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <div class="row">
+        <div class="col-lg-6 mx-auto text-center">
+          <p>Reach out for collaboration or inquiries!</p>
+          <form action="https://formspree.io/f/your-form-id" method="POST" id="contact-form">
+            <div class="mb-3">
+              <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email" required>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" name="message" placeholder="Message" aria-label="Message" rows="4"
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+            <div class="form-message" id="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Social Icons -->
+  <div class="position-absolute bottom-0 start-50 translate-middle-x bottom-icons">
+    <div class="social-icons d-flex justify-content-center">
+      <a href="https://www.linkedin.com/in/channabasava-myageri-127913369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+        target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+      <a href="mailto:myagerichannabasava.@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      <a href="https://github.com/ChannabasavaMyageri" target="_blank" rel="noopener" aria-label="GitHub Profile"><i
+          class="bi bi-github"></i></a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Smooth Scrolling -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  <!-- Particle Animation -->
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = window.innerWidth < 768 ? 50 : 100;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      const maxDistance = window.innerWidth < 768 ? 100 : 150;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < maxDistance) {
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / maxDistance})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+  <!-- Form Submission Handling -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formMessage.style.display = 'none';
+      formMessage.classList.remove('success', 'error');
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formMessage.textContent = 'Message sent successfully!';
+          formMessage.classList.add('success');
+          formMessage.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('Failed to send message.');
+        }
+      } catch (error) {
+        formMessage.textContent = 'Error sending message. Please try again.';
+        formMessage.classList.add('error');
+        formMessage.style.display = 'block';
+      }
+    });
+  </script>
 </body>
 
 </html>
