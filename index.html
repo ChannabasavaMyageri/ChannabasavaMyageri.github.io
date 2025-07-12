@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="Portfolio of CM Channabasava Myageri, a passionate software engineer specializing in web development.">
+    content="Portfolio of Channabasava Myageri, a dedicated computer science engineering student passionate about web development.">
   <meta name="keywords" content="software engineer, web developer, portfolio, Channabasava Myageri, programmer">
   <meta property="og:title" content="Channabasava Myageri">
   <meta property="og:description"
-    content="Explore the portfolio of Channabasava Myageri, showcasing projects, skills, and contact information.">
+    content="Portfolio of Channabasava Myageri, a dedicated computer science engineering student passionate about web development.">
   <meta property="og:type" content="website">
   <title>Channabasava Myageri</title>
   <link rel="icon"
@@ -88,51 +88,102 @@
       transition: transform 0.3s;
     }
 
-
     .circle:hover {
       transform: scale(1.05);
     }
 
     /* Right-side rotated text with icons */
-    .side-text a {
+    .side-text {
       position: fixed;
-      right: clamp(5px, 1vw, 10px);
-      transform: rotate(90deg);
-      transform-origin: right top;
-      font-size: clamp(0.8rem, 1.5vw, 1rem);
-      font-weight: 500;
-      letter-spacing: 2px;
-      white-space: nowrap;
-      color: white;
+      right: 20px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      padding: 10px 5px;
+      font-size: 1rem;
+      color: #fff;
       text-decoration: none;
       transition: color 0.3s, transform 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 100;
-      cursor: pointer;
+      z-index: 1020;
     }
 
-    .side-text a i {
-      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+    .side-text a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .side-text a:hover {
+    .side-text:hover {
       color: #B6B09F;
-      text-decoration: underline;
-      transform: rotate(90deg) scale(1.1);
+      
     }
 
-    .about a {
-      top: clamp(15%, 20vh, 25%);
+    .side-text i {
+      margin-bottom: 5px;
     }
 
-    .projects a {
-      top: 50%;
+    /* Position each side-text item with even spacing */
+    .about {
+      top: calc(10vh + 5px);
     }
 
-    .contact a {
-      top: clamp(75%, 80vh, 85%);
+    .projects {
+      top: calc(35vh + 5px);
+    }
+
+    .contact {
+      top: calc(60vh + 5px);
+    }
+
+    .resume {
+      top: calc(85vh + 5px);
+    }
+
+    /* Ensure no overlap with content and center vertically on desktop */
+    @media (min-width: 992px) {
+      .side-text {
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .about {
+        top: calc(10vh + 5px);
+      }
+
+      .projects {
+        top: calc(35vh + 5px);
+      }
+
+      .contact {
+        top: calc(60vh + 5px);
+      }
+
+      .resume {
+        top: calc(85vh + 5px);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .side-text {
+        font-size: 0.9rem;
+        padding: 8px 4px;
+        right: 15px;
+      }
+
+      .about {
+        top: calc(10vh + 4px);
+      }
+
+      .projects {
+        top: calc(35vh + 4px);
+      }
+
+      .contact {
+        top: calc(60vh + 4px);
+      }
+
+      .resume {
+        top: calc(85vh + 4px);
+      }
     }
 
     .social-icons a {
@@ -184,22 +235,6 @@
       border: none;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       color: white;
-    }
-
-    /* Form feedback */
-    .form-message {
-      display: none;
-      margin-top: 1rem;
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-    }
-
-    .form-message.success {
-      background-color: #28a745;
-    }
-
-    .form-message.error {
-      background-color: #dc3545;
     }
 
     /* Animations */
@@ -268,6 +303,15 @@
         margin: 0 clamp(5px, 1vw, 8px);
       }
     }
+
+    .navbar-nav {
+      justify-content: center !important;
+      padding: 0.5rem 0;
+    }
+
+    .nav-link {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -281,15 +325,16 @@
   </a>
 
   <!-- Navbar for Mobile -->
-  <nav class="navbar navbar-expand-lg navbar-dark d-lg-none fixed-top" style="background-color: #1a1a1a;">
+  <nav class="navbar navbar-expand-lg navbar-dark d-lg-none fixed-top"
+    style="background-color: #1a1a1a; padding: 0.5rem 0;">
     <div class="container-fluid">
-      <a class="navbar-brand initials" href="#home" aria-label="Go to Home">CM</a>
+      <a class="navbar-brand initials" href="#home" aria-label="Go to Home" style="font-size: 1.2rem;">CM</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mx-auto" style="width: 100%; padding: 0.5rem;">
           <li class="nav-item">
             <a class="nav-link" href="#about" aria-label="Go to About section"><i
                 class="bi bi-info-circle me-1"></i>About</a>
@@ -301,6 +346,10 @@
           <li class="nav-item">
             <a class="nav-link" href="#contact" aria-label="Go to Contact section"><i
                 class="bi bi-envelope me-1"></i>Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#resume" aria-label="Go to Resume section"><i
+                class="bi bi-file-earmark-text me-1"></i>Resume</a>
           </li>
         </ul>
       </div>
@@ -317,21 +366,22 @@
             class="bi bi-briefcase"></i> PROJECTS</a></div>
       <div class="side-text contact"><a href="#contact" aria-label="Go to Contact section"><i
             class="bi bi-envelope"></i> CONTACT</a></div>
+      <div class="side-text resume"><a href="#resume" aria-label="Go to Resume section"><i
+            class="bi bi-file-earmark-text"></i> RESUME</a></div>
 
       <!-- Center Area -->
       <div class="d-flex justify-content-center align-items-center h-100">
         <div class="center-content">
           <!-- Name and Tagline -->
           <div>
-            <div class="hero-name text-white">Channabasava </div>
+            <div class="hero-name text-white">Channabasava</div>
             <div class="hero-name text-white">Myageri</div>
             <div class="tagline text-white">
-              <q>Hello World!,Meet your next developer</q>
-
+              <q>Hello World!, Meet your next developer</q>
             </div>
           </div>
           <!-- Avatar -->
-          <img src="image.png" class="circle"></img>
+          <img src="image.png" class="circle" alt="Channabasava Myageri Avatar" />
         </div>
       </div>
     </div>
@@ -343,14 +393,10 @@
       <h2>About Me</h2>
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <p>"Hi, I'm Channabasava Myageri, a computer science engineering 
-            student with a passion for Web Designing and UI/UX. Proficient in 
-            canva and figma , I'm excited to apply my skills to
-             real-world projects. As a fresher, I'm eager to learn, grow, and contribute to innovative teams. 
-             When I'm not coding, I enjoy taking pictures and traveling."
-
-
-          </p>
+          <p>"Hi, I'm Channabasava Myageri, a computer science engineering student with a passion for Web Designing and
+            UI/UX. Proficient in Canva and Figma, I'm excited to apply my skills to real-world projects. As a fresher,
+            I'm eager to learn, grow, and contribute to innovative teams. When I'm not coding, I enjoy taking pictures
+            and traveling."</p>
           <p><strong>Skills:</strong> HTML, CSS, JavaScript, Python, UI/UX.</p>
         </div>
       </div>
@@ -366,12 +412,11 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Pet-Folio</h5>
-              <p class="card-text">A web app built with HTML,CSS,JavaScript Giving every animal a place to call
-                homeby connecting hearts through adoption.<br>
-                Features include :<br>
+              <p class="card-text">A web app built with HTML, CSS, JavaScript, giving every animal a place to call home
+                by connecting hearts through adoption.<br>Features include:<br>
               <ul>
                 <li>E-shelter for street animals.</li>
-                <li>Adoption platform for caretaker.</li>
+                <li>Adoption platform for caretakers.</li>
                 <li>When you can’t care for your pet, we help find someone who can.</li>
               </ul>
               </p>
@@ -382,13 +427,12 @@
         <div class="col-md-6 mb-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Donor connect</h5>
-              <p class="card-text">A web app project using HTML,CSS,JavaScript,My SQL Making it easy to find or
-                become a lifesaving blood donor.<br> Features include :<br>
+              <h5 class="card-title">Donor Connect</h5>
+              <p class="card-text">A web app project using HTML, CSS, JavaScript, MySQL, making it easy to find or
+                become a lifesaving blood donor.<br>Features include:<br>
               <ul>
-                <li>Knowing about future blood camps</li>
-                <li>Connecting the
-                  reciver to the nearest donor.</li>
+                <li>Knowing about future blood camps.</li>
+                <li>Connecting the receiver to the nearest donor.</li>
                 <li>Listing out the nearest blood banks.</li>
               </ul>
               </p>
@@ -396,20 +440,9 @@
             </div>
           </div>
         </div>
-        <!--<div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Project Three</h5>
-              <p class="card-text">An open-source tool for [purpose], built with [technologies].</p>
-              <a href="#" class="btn btn-primary">View Project</a>
-            </div>
-          </div>
-        </div>-->
       </div>
     </div>
   </section>
-
-
 
   <!-- Contact Section -->
   <section id="contact" class="section">
@@ -417,21 +450,30 @@
       <h2>Contact Me</h2>
       <div class="row">
         <div class="col-lg-6 mx-auto text-center">
-          <p>Reach out for collaboration or inquiries!</p>
-          <form action="https://formspree.io/f/your-form-id" method="POST" id="contact-form">
-            <div class="mb-3">
-              <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" required>
+          <p>Let’s connect to discuss opportunities or collaborations! Reach out via the links below or email me
+            directly.</p>
+          <div class="position-absolute start-50 translate-middle-x mt-5">
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/in/channabasava-myageri-127913369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+              <a href="mailto:myagerichannabasava@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+              <a href="https://github.com/ChannabasavaMyageri" target="_blank" rel="noopener"
+                aria-label="GitHub Profile"><i class="bi bi-github"></i></a>
             </div>
-            <div class="mb-3">
-              <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email" required>
-            </div>
-            <div class="mb-3">
-              <textarea class="form-control" name="message" placeholder="Message" aria-label="Message" rows="4"
-                required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-            <div class="form-message" id="form-message"></div>
-          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section">
+    <div class="container">
+      <h2>Resume</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p>Download my resume to explore my education, skills, and experience in detail.</p>
+          <a href="Channabasava_Myageri.pdf" class="btn btn-primary" download aria-label="Download Resume PDF">Download
+            Resume</a>
         </div>
       </div>
     </div>
@@ -442,7 +484,7 @@
     <div class="social-icons d-flex justify-content-center">
       <a href="https://www.linkedin.com/in/channabasava-myageri-127913369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
-      <a href="mailto:myagerichannabasava.@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      <a href="mailto:myagerichannabasava@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
       <a href="https://github.com/ChannabasavaMyageri" target="_blank" rel="noopener" aria-label="GitHub Profile"><i
           class="bi bi-github"></i></a>
     </div>
@@ -534,38 +576,6 @@
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
-  </script>
-  <!-- Form Submission Handling -->
-  <script>
-    const form = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      formMessage.style.display = 'none';
-      formMessage.classList.remove('success', 'error');
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-          formMessage.textContent = 'Message sent successfully!';
-          formMessage.classList.add('success');
-          formMessage.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error('Failed to send message.');
-        }
-      } catch (error) {
-        formMessage.textContent = 'Error sending message. Please try again.';
-        formMessage.classList.add('error');
-        formMessage.style.display = 'block';
-      }
     });
   </script>
 </body>
